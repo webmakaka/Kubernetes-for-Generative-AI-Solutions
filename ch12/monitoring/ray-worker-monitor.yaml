@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: ray-workers-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobLabel: ray-workers
+  # Only select Kubernetes Pods in the "default" namespace.
+  namespaceSelector:
+    matchNames:
+      - default
+  # Only select Kubernetes Pods with "matchLabels".
+  selector:
+    matchLabels:
+      ray.io/node-type: worker
+  # A list of endpoints allowed as part of this PodMonitor.
+  podMetricsEndpoints:
+  - port: metrics

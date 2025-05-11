@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: qdrant-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobLabel: qdrant
+  namespaceSelector:
+    matchNames:
+      - qdrant
+  # Only select Kubernetes Services with "matchLabels".
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: qdrant
+  # A list of endpoints allowed as part of this ServiceMonitor.
+  endpoints:
+    - port: http

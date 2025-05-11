@@ -1,0 +1,35 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: eks-gpu-np
+spec:
+  template:
+    metadata:
+      labels:
+        hub.jupyter.org/node-purpose: user
+        NodePool: eks-gpu-np
+        nvidia.com/gpu.present: "true"
+    spec:
+      terminationGracePeriod: 2m
+      nodeClassRef:
+        group: karpenter.k8s.aws
+        kind: EC2NodeClass
+        name: default-gpu
+      taints:
+        - key: nvidia.com/gpu
+          effect: NoSchedule
+      requirements:
+        - key: "karpenter.k8s.aws/instance-family"
+          operator: In
+          values: ["g6"]
+        - key: "topology.kubernetes.io/zone"
+          operator: In
+          values: ["us-west-2a", "us-west-2b", "us-west-2c"]
+        - key: "karpenter.sh/capacity-type"
+          operator: In
+          values: ["spot", "on-demand"]
+  disruption:
+    consolidationPolicy: WhenEmpty
+    consolidateAfter: 120s
+  limits:
+    cpu: 100

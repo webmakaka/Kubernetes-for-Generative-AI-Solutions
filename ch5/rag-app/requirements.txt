@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+pydantic
+qdrant-client
+langchain
+boto3
+requests
+langchain-community
+langchain-qdrant
+langsmith
+langchain-openai

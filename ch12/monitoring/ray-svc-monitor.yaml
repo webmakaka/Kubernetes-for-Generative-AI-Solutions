@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ray-head-monitor
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  jobLabel: ray-head
+  namespaceSelector:
+    matchNames:
+      - default
+  # Only select Kubernetes Services with "matchLabels".
+  selector:
+    matchLabels:
+      ray.io/node-type: head
+  # A list of endpoints allowed as part of this ServiceMonitor.
+  endpoints:
+    - port: metrics
+    - port: as-metrics # autoscaler metrics
+    - port: dash-metrics # dashboard metrics
+  targetLabels:
+  - ray.io/cluster

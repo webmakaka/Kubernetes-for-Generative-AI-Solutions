@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-llama32-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: my-llama32
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: my-llama32
+    spec:
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: my-llama32-container
+        imagePullPolicy: Always
+        image: k8s4genai/my-llama:32
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            nvidia.com/gpu: 2
+        env:
+        - name: HUGGING_FACE_HUB_TOKEN
+          valueFrom:
+            secretKeyRef:
+              name: hugging-face-secret
+              key: token
+        volumeMounts:
+        - name: aws-sm-secrets
+          mountPath: "/mnt/secrets-store"
+          readOnly: true
+      volumes:
+      - name: aws-sm-secrets
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "aws-secret-provider-class"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: my-llama32
+  name: my-llama32-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: my-llama32

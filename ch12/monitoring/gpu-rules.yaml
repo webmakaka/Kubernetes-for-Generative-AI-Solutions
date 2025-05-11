@@ -1,0 +1,70 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: nvidia-gpu-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: nvidia-gpu.rules
+      rules:
+        - alert: GPUMemoryUsageHigh
+          expr: ( DCGM_FI_DEV_FB_USED / (DCGM_FI_DEV_FB_USED + DCGM_FI_DEV_FB_FREE)) * 100 > 90
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High GPU memory usage on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              GPU memory usage is above 90% on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} for more than 5 minutes.
+
+        - alert: GPUHighUtilization
+          expr: avg_over_time(DCGM_FI_DEV_GPU_UTIL[5m]) > 90
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High GPU utilization on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              GPU utilization is above 90% on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} for over 5 minutes.
+
+        - alert: GPULowUtilization
+          expr: avg_over_time(DCGM_FI_DEV_GPU_UTIL[5m]) < 20
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Low GPU utilization on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              GPU utilization is below 20% on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} for over 5 minutes.
+
+        - alert: GPUTemperatureHigh
+          expr: DCGM_FI_DEV_GPU_TEMP > 80
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High GPU temperature detected on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              GPU temperature is above 80 on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} for over 5 minutes.
+
+        - alert: GPUECCErrorsDetected
+          expr: increase(DCGM_FI_DEV_CORRECTABLE_ECC_ERRORS[10m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Correctable ECC errors detected on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              Correctable ECC errors were detected on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} in the last 10 minutes.
+
+        - alert: GPUXidCriticalError
+          expr: increase(DCGM_FI_DEV_XID_ERRORS[10m]) > 0
+          for: 1m
+          labels:
+            severity: critical
+          annotations:
+            summary: "XID error detected on GPU {{ $labels.gpu }} at {{ $labels.instance }}"
+            description: |
+              Critical XID error detected on GPU {{ $labels.gpu }} (UUID: {{ $labels.uuid }}) at {{ $labels.instance }} in the last 10 minutes. Check `dmesg` and GPU logs.

@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: my-llama-job
+spec:
+  template:
+    metadata:
+      labels:
+        app: my-llama-job
+    spec:
+      restartPolicy: Never
+      serviceAccount: llama-fine-tuning-sa
+      tolerations:
+      - key: "nvidia.com/gpu"
+        operator: "Exists"
+        effect: "NoSchedule"
+      containers:
+      - name: my-llama-job-container
+        image: <<Replace your ECR image name here>>
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        env:
+        - name: MODEL_ASSETS_BUCKET
+          value: "<<Replace your S3 bucket here>>"
+        - name: HUGGING_FACE_HUB_TOKEN
+          value: "<<Replace your Hugging face token here>>"
+        - name: TRAIN_DATASET_FILE
+          value: "s3://kubernetes-for-genai-models/chapter5/loyalty_qa_train.jsonl"
+        - name: EVAL_DATASET_FILE
+          value: "s3://kubernetes-for-genai-models/chapter5/loyalty_qa_val.jsonl"

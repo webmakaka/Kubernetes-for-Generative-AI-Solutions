@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chatbot-ui-deployment
+  labels:
+    app.kubernetes.io/name: chatbot-ui
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: chatbot-ui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: chatbot-ui
+    spec:
+      containers:
+      - name: rag-ui-container
+        image: k8s4genai/chatbot-ui
+        env:
+        - name: RAG_API_ENDPOINT
+          value: "http://rag-app-service.default:80/generate"  # Pass the API endpoint as an environment variable
+        - name: FINETUNE_API_ENDPOINT
+          value: "http://my-llama-finetuned-svc.default:80/generate"  # Pass the API endpoint as an environment variable
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chatbot-ui-service
+  labels:
+    app.kubernetes.io/name: chatbot-ui
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: chatbot-ui
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7860

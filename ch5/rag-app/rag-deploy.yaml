@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-app-deployment
+  labels:
+    app.kubernetes.io/name: rag-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rag-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rag-app
+    spec:
+      containers:
+      - name: rag-api-container
+        image: <<Replace with your ECR image here>>
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: QDRANT_ENDPOINT
+          value: "http://qdrant.qdrant.svc.cluster.local:6333/"
+        - name: OPENAI_API_KEY
+          value: "<<Replace your OpenAI API Key"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rag-app-service
+  labels:
+    app.kubernetes.io/name: rag-app
+spec:
+  selector:
+    app.kubernetes.io/name: rag-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

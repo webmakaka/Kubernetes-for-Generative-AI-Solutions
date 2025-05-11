@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-llama-finetuned-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: my-llama-finetuned
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: my-llama-finetuned
+    spec:
+      containers:
+      - name: llama-finetuned-container
+        image: <<Replace your ECR Image here>>
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            nvidia.com/gpu: 1
+        env:
+        - name: HUGGING_FACE_HUB_TOKEN
+          value: "<<Replace your Hugging face token here>>"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: my-llama-finetuned
+  name: my-llama-finetuned-svc
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: my-llama-finetuned

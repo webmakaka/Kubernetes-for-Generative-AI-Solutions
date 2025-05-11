@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: qdrant-restore-job
+spec:
+  template:
+    spec:
+      containers:
+      - name: qdrant-restore
+        image: curlimages/curl:latest
+        command: ["sh", "-c"]
+        args:
+          - |
+            curl -X PUT "http://qdrant.qdrant.svc.cluster.local:6333/collections/catalog" \
+                 -H "Content-Type: application/json" \
+                 -d '{
+                       "vectors": {
+                        "size": 1536,
+                        "distance": "Cosine"
+                       }
+                     }';
+            curl -X PUT "http://qdrant.qdrant.svc.cluster.local:6333/collections/catalog/snapshots/recover" \
+                 -H "Content-Type: application/json" \
+                 -d '{
+                       "location": "https://kubernetes-for-genai-models.s3.amazonaws.com/chapter5/catalog.snapshot"
+                     }';
+      restartPolicy: Never
+  backoffLimit: 1

@@ -1,0 +1,59 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: ray-serve-rules
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  groups:
+    - name: ray-serve.rules
+      rules:
+        - alert: RayServeHighLatency
+          expr: histogram_quantile(0.95, sum(rate(ray_serve_http_request_latency_ms_bucket[5m])) by (route, le)) > 1000
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High latency (95th percentile > 1s) for route {{ $labels.route }}"
+            description: "Ray Serve 95th percentile latency is over 1s for route {{ $labels.route }}."
+
+        - alert: RayServeHighErrorRate
+          expr: |
+            sum(rate(ray_serve_num_http_error_requests[5m])) by (route)
+            /
+            sum(rate(ray_serve_num_http_requests_total[5m])) by (route)
+            > 0.05
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High error rate on route {{ $labels.route }}"
+            description: "More than 5% of HTTP requests failed on route {{ $labels.route }}."
+
+        - alert: RayServeLowThroughput
+          expr: sum(rate(ray_serve_num_http_requests_total[5m])) by (route) < 1
+          for: 10m
+          labels:
+            severity: info
+          annotations:
+            summary: "Low request rate on route {{ $labels.route }}"
+            description: "Ray Serve is receiving less than 1 request per second on route {{ $labels.route }}."
+
+        - alert: RayServeAvgLatencySpike
+          expr: (rate(ray_serve_http_request_latency_ms_sum[5m]) / rate(ray_serve_http_request_latency_ms_count[5m])) > 500
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Spike in average latency for Ray Serve"
+            description: "Ray Serve average latency has exceeded 500ms."
+
+        - alert: RayNodeDown
+          expr: absent(ray_node_cpu_utilization)
+          for: 5m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Ray node down"
+            description: "No CPU utilization metrics received from a Ray node for over 5 minutes."
