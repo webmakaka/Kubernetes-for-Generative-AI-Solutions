@@ -46,6 +46,41 @@ With the following software and hardware list you can run all code files present
 | 1–14    | Security tools                    | OPA, Kyverno                                           |
 
 
+
+<br/>
+
+## Chapters:
+
+**Part 1: GenAI and Kubernetes Foundation**
+
+<ol>
+  <li>Generative AI Fundamentals</li>
+  <li>Kubernetes – Introduction and Integration with GenAI</li>
+  <li>Getting Started with Kubernetes in the Cloud</li>
+</ol>
+
+**Part 2: Productionalizing GenAI Workloads Using K8s**
+
+<ol start="4">
+  <li>GenAI Model Optimization for Domain-Specific Use Cases</li>
+  <li>Working with GenAI on K8s: Chatbot Example</li>
+  <li>Scaling GenAI Applications on Kubernetes</li>
+  <li>Cost Optimization of GenAI Applications on Kubernetes</li>
+  <li>Networking Best Practices for Deploying GenAI on K8s</li>
+  <li>Security Best Practices for Deploying GenAI on Kubernetes</li>
+  <li>Optimizing GPU Resources for GenAI Applications in Kubernetes</li>
+</ol>
+
+**Part 3: Operating GenAI Workloads on K8s**
+
+<ol start="11">
+  <li>GenAIOps: Data Management and the GenAI Automation Pipeline</li>
+  <li>Observability – Getting Visibility into GenAI on K8s</li>
+  <li>High Availability and Disaster Recovery for GenAI Applications</li>
+  <li>Wrapping Up: GenAI Coding Assistants and Further Reading</li>
+</ol>
+
+
 <br/><br/>
 
 ---
