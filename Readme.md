@@ -54,7 +54,7 @@ With the following software and hardware list you can run all code files present
 **Part 1: GenAI and Kubernetes Foundation**
 
 <ol>
-  <li>Generative AI Fundamentals</li>
+  <li>📖 Generative AI Fundamentals</li>
   <li>Kubernetes – Introduction and Integration with GenAI</li>
   <li>Getting Started with Kubernetes in the Cloud</li>
 </ol>
@@ -76,7 +76,7 @@ With the following software and hardware list you can run all code files present
 <ol start="11">
   <li>GenAIOps: Data Management and the GenAI Automation Pipeline</li>
   <li>Observability – Getting Visibility into GenAI on K8s</li>
-  <li>High Availability and Disaster Recovery for GenAI Applications</li>
+  <li>📖 High Availability and Disaster Recovery for GenAI Applications</li>
   <li>Wrapping Up: GenAI Coding Assistants and Further Reading</li>
 </ol>
 
