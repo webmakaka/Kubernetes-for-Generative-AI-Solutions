@@ -1,5 +1,9 @@
 # Kubernetes for Generative AI Solutions
 
+**original src:** 
+https://github.com/PacktPublishing/Kubernetes-for-Generative-AI-Solutions
+
+
 <a href="https://www.packtpub.com/en-us/product/kubernetes-for-generative-ai-solutions-9781836209935"><img src="https://content.packt.com/_/image/original/B31108/cover_image.jpg?version=1749204926" alt="Book Name" height="256px" align="right"></a>
 
 This is the code repository for [Kubernetes for Generative AI Solutions](https://www.packtpub.com/en-us/product/kubernetes-for-generative-ai-solutions-9781836209935), published by Packt.
