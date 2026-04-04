@@ -5,24 +5,24 @@
 **original src:**  
 https://github.com/PacktPublishing/Kubernetes-for-Generative-AI-Solutions
 
-
 **A complete guide to designing, optimizing, and deploying Generative AI workloads on Kubernetes**
 
 ## What is this book about?
+
 Learn step by step how to design, optimize, and deploy Generative AI projects on Kubernetes. Covering networking, observability, security, scaling, and cost optimization strategies, this guide takes you from first deployment to production excellence.
 
 <br/>
 
 This book covers the following exciting features:
-* Explore GenAI deployment stack, agents, RAG, and model fine-tuning
-* Implement HPA, VPA, and Karpenter for efficient autoscaling
-* Optimize GPU usage with fractional allocation, MIG, and MPS setups
-* Reduce cloud costs and monitor spending with Kubecost tools
-* Secure GenAI workloads with RBAC, encryption, and service meshes
-* Monitor system health and performance using Prometheus and Grafana
-* Ensure high availability and disaster recovery for GenAI systems
-* Automate GenAI pipelines for continuous integration and delivery
 
+- Explore GenAI deployment stack, agents, RAG, and model fine-tuning
+- Implement HPA, VPA, and Karpenter for efficient autoscaling
+- Optimize GPU usage with fractional allocation, MIG, and MPS setups
+- Reduce cloud costs and monitor spending with Kubecost tools
+- Secure GenAI workloads with RBAC, encryption, and service meshes
+- Monitor system health and performance using Prometheus and Grafana
+- Ensure high availability and disaster recovery for GenAI systems
+- Automate GenAI pipelines for continuous integration and delivery
 
 <br/>
 
@@ -33,30 +33,14 @@ With the following software and hardware list you can run all code files present
 
 <br/>
 
-### Software and Hardware List
-
-| Chapter | Software/Hardware Required        | OS Required                                           |
-|---------|-----------------------------------|--------------------------------------------------------|
-| 1–14    | Operating system                  | Linux, macOS, Windows (via WSL)                        |
-| 1–14    | Kubernetes                        | Amazon EKS, kind (for local testing)                   |
-| 1–14    | AI/ML frameworks                  | Hugging Face Transformers, PyTorch, TensorFlow         |
-| 1–14    | Accelerators                      | NVIDIA GPUs, AWS Trainium/Inferentia                   |
-| 1–14    | Observability                     | Prometheus, Grafana, OpenTelemetry, Loki               |
-| 1–14    | Automation                        | Kubeflow, MLflow, Ray, Argo Workflows                  |
-| 1–14    | Security tools                    | OPA, Kyverno                                           |
-
-
-
-<br/>
-
 ## Chapters:
 
 **Part 1: GenAI and Kubernetes Foundation**
 
 <ol>
   <li>📖 Generative AI Fundamentals</li>
-  <li>Kubernetes – Introduction and Integration with GenAI</li>
-  <li>Getting Started with Kubernetes in the Cloud</li>
+  <li>✅ Kubernetes – Introduction and Integration with GenAI</li>
+  <li>✅ Getting Started with Kubernetes in the Cloud</li>
 </ol>
 
 **Part 2: Productionalizing GenAI Workloads Using K8s**
@@ -80,6 +64,19 @@ With the following software and hardware list you can run all code files present
   <li>Wrapping Up: GenAI Coding Assistants and Further Reading</li>
 </ol>
 
+<br/>
+
+### Software and Hardware List
+
+| Chapter | Software/Hardware Required | OS Required                                    |
+| ------- | -------------------------- | ---------------------------------------------- |
+| 1–14    | Operating system           | Linux, macOS, Windows (via WSL)                |
+| 1–14    | Kubernetes                 | Amazon EKS, kind (for local testing)           |
+| 1–14    | AI/ML frameworks           | Hugging Face Transformers, PyTorch, TensorFlow |
+| 1–14    | Accelerators               | NVIDIA GPUs, AWS Trainium/Inferentia           |
+| 1–14    | Observability              | Prometheus, Grafana, OpenTelemetry, Loki       |
+| 1–14    | Automation                 | Kubeflow, MLflow, Ray, Argo Workflows          |
+| 1–14    | Security tools             | OPA, Kyverno                                   |
 
 <br/><br/>
 
@@ -87,4 +84,4 @@ With the following software and hardware list you can run all code files present
 
 <br/>
 
-<a href="https://k8s.ru/">Предложить инженеру работу / подработку на проекте с kubernetes, microservices, machine learning, big data, golang</a>
+<a href="https://aiops.ru/">Предложить инженеру работу / подработку на проекте с kubernetes, microservices, machine learning, big data, golang</a>
