@@ -1,6 +1,6 @@
 # [Book][Ashok Srirama, Sukirti Gupta] Kubernetes for Generative AI Solutions [ENG, 2025]
 
-<img src="./img/Kubernetes-for-Generative-AI-Solutions.webp" alt="ubernetes for Generative AI Solutions" height="256px" align="right">
+<img src="./img/Kubernetes-for-Generative-AI-Solutions.webp" alt="Kubernetes for Generative AI Solutions" height="256px" align="right">
 
 **original src:**  
 https://github.com/PacktPublishing/Kubernetes-for-Generative-AI-Solutions
@@ -46,7 +46,7 @@ With the following software and hardware list you can run all code files present
 **Part 2: Productionalizing GenAI Workloads Using K8s**
 
 <ol start="4">
-  <li>GenAI Model Optimization for Domain-Specific Use Cases</li>
+  <li>📖 GenAI Model Optimization for Domain-Specific Use Cases</li>
   <li>Working with GenAI on K8s: Chatbot Example</li>
   <li>Scaling GenAI Applications on Kubernetes</li>
   <li>Cost Optimization of GenAI Applications on Kubernetes</li>
