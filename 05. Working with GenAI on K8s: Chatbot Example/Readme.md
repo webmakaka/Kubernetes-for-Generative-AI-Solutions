@@ -2,13 +2,22 @@
 
 <br/>
 
-<img src="./img/chapter05-pic01.png" alt="Chatbot Example">
+<img src="../img/chapter05-pic01.png" alt="Chatbot Example">
 
 <br/>
 
 ### Experimentation using JupyterHub
 
 <br/>
+
+**jupyterhub-values.yaml**
+
+<br/>
+
+```
+s3 https://kubernetes-for-genai-models.s3.amazonaws.com/
+chapter5/jupyterhub-values.yaml
+```
 
 ```bash
 $ kubectl port-forward svc/proxy-public 8000:80 -n jupyterhub
@@ -39,14 +48,15 @@ $ kubectl logs -f job/my-llama-job
 
 <br/>
 
-download
-
-<br/>
-
 ```
 s3://<<Your S3 Bucket Name>>/<<Your Model
 directory>> model-assets/
 ```
+
+<br/>
+
+- loyalty_qa_train.jsonl
+- loyalty_qa_val.jsonl
 
 <br/>
 
