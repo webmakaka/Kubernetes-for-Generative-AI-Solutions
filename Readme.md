@@ -47,7 +47,7 @@ With the following software and hardware list you can run all code files present
 
 <ol start="4">
   <li>📖 GenAI Model Optimization for Domain-Specific Use Cases</li>
-  <li>Working with GenAI on K8s: Chatbot Example</li>
+  <li>🛠️ ❌ Working with GenAI on K8s: Chatbot Example</li>
   <li>Scaling GenAI Applications on Kubernetes</li>
   <li>Cost Optimization of GenAI Applications on Kubernetes</li>
   <li>Networking Best Practices for Deploying GenAI on K8s</li>
