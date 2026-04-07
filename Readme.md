@@ -29,8 +29,6 @@ This book covers the following exciting features:
 **Following is what you need for this book:**
 This book is for solutions architects, product managers, engineering leads, DevOps teams, GenAI developers, and AI engineers. It's also suitable for students and academics learning about GenAI, Kubernetes, and cloud-native technologies. A basic understanding of cloud computing and AI concepts is needed, but no prior knowledge of Kubernetes is required.
 
-With the following software and hardware list you can run all code files present in the book (Chapter 1-14).
-
 <br/>
 
 ## Chapters:
@@ -48,7 +46,7 @@ With the following software and hardware list you can run all code files present
 <ol start="4">
   <li>📖 GenAI Model Optimization for Domain-Specific Use Cases</li>
   <li>🛠️ ❌ Working with GenAI on K8s: Chatbot Example</li>
-  <li>Scaling GenAI Applications on Kubernetes</li>
+  <li>⏸️ Scaling GenAI Applications on Kubernetes</li>
   <li>Cost Optimization of GenAI Applications on Kubernetes</li>
   <li>Networking Best Practices for Deploying GenAI on K8s</li>
   <li>Security Best Practices for Deploying GenAI on Kubernetes</li>

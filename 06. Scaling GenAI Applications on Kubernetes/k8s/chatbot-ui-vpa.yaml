@@ -8,14 +8,14 @@ spec:
     kind: Deployment
     name: chatbot-ui-deployment
   updatePolicy:
-    updateMode: "Auto" 
+    updateMode: 'Auto'
   resourcePolicy:
     containerPolicies:
-    - containerName: "*"
-      minAllowed:
-        cpu: "1000m"       
-        memory: "2Gi"   
-      maxAllowed:
-        cpu: "2000m"      
-        memory: "4Gi"     
-      controlledValues: "RequestsAndLimits"  
+      - containerName: '*'
+        minAllowed:
+          cpu: '1000m'
+          memory: '2Gi'
+        maxAllowed:
+          cpu: '2000m'
+          memory: '4Gi'
+        controlledValues: 'RequestsAndLimits'
