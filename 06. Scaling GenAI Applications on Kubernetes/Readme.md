@@ -2,12 +2,12 @@
 
 **In this chapter, we’re going to cover the following main topics:**
 
-• Scaling metrics
-• HorizontalPodAutoscaler (HPA)
-• VerticalPodAutoscaler (VPA)
-• Kubernetes Event-Driven Autoscaler (KEDA)
-• Cluster Autoscaler (CA)
-• Karpenter
+• Scaling metrics  
+• HorizontalPodAutoscaler (HPA)  
+• VerticalPodAutoscaler (VPA)  
+• Kubernetes Event-Driven Autoscaler (KEDA)  
+• Cluster Autoscaler (CA)  
+• Karpenter  
 
 <br/>
 
