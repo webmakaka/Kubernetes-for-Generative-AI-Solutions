@@ -49,8 +49,7 @@ $ kubectl logs -f job/my-llama-job
 <br/>
 
 ```
-s3://<<Your S3 Bucket Name>>/<<Your Model
-directory>> model-assets/
+s3://<<Your S3 Bucket Name>>/<<Your Model directory>> model-assets/
 ```
 
 <br/>
